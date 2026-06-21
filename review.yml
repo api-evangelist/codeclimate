@@ -1,0 +1,63 @@
+aid: codeclimate
+name: Code Climate
+review:
+  question: Does Code Climate expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. The Code Climate Quality API is a
+    synchronous JSON API served over HTTPS; no WebSocket, Server-Sent
+    Events, or other event-driven/streaming transport is documented, so
+    there is no in-scope surface to model with AsyncAPI.
+findings:
+  summary: |
+    Code Climate does not publish a documented public WebSocket API. The
+    Quality REST API (v1) at https://api.codeclimate.com/v1 complies with
+    REST conventions and the JSON API specification and is accessed over
+    HTTPS only, authenticated with a personal access token
+    (Authorization: Token token={TOKEN}). Test coverage is uploaded over
+    the same HTTPS REST surface using a repository-scoped reporter
+    identifier. No realtime, bidirectional, or streaming WebSocket
+    (ws:// or wss://) endpoint is documented for any resource.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.codeclimate.com/v1
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Code Climate API reference, test coverage documentation, or Velocity documentation as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://api.codeclimate.com/v1/user
+    - GET  https://api.codeclimate.com/v1/orgs
+    - GET  https://api.codeclimate.com/v1/orgs/{org_id}/repos
+    - POST https://api.codeclimate.com/v1/orgs/{org_id}/repos
+    - PUT  https://api.codeclimate.com/v1/orgs/{org_id}/repos/{repo_id}
+    - GET  https://api.codeclimate.com/v1/repos
+    - GET  https://api.codeclimate.com/v1/repos/{repo_id}
+    - GET  https://api.codeclimate.com/v1/repos/{repo_id}/services
+    - GET  https://api.codeclimate.com/v1/repos/{repo_id}/snapshots/{snapshot_id}
+    - GET  https://api.codeclimate.com/v1/repos/{repo_id}/snapshots/{snapshot_id}/issues
+    - POST https://api.codeclimate.com/v1/test_reports
+    - GET  https://api.codeclimate.com/v1/repos/{repo_id}/test_reports
+    - GET  https://api.codeclimate.com/v1/repos/{repo_id}/test_reports/{id}/test_file_reports
+    - POST https://api.codeclimate.com/v1/repos/{repo_id}/test_reports/{id}/test_file_reports/batch
+sources:
+  - url: https://developer.codeclimate.com/
+    type: APIReference
+    note: Quality API reference; all documented endpoints are HTTPS REST under /v1. Now redirects to docs.qlty.sh following the Qlty rebrand.
+  - url: https://docs.codeclimate.com/docs/getting-started-test-coverage
+    type: Documentation
+    note: Test coverage uploaded via POST to /test_reports and /test_file_reports/batch over HTTPS; no WebSocket.
+  - url: https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis
+    type: Documentation
+    note: Velocity engineering analytics APIs; no WebSocket surface documented.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No event-driven or WebSocket protocol surface exists. The API is a
+    synchronous HTTPS JSON API, so no AsyncAPI document was authored.

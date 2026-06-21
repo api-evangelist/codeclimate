@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Code Climate
+providerId: codeclimate
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Code Quality
+- Static Analysis
+- Test Coverage
+- Engineering Analytics
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Code Climate Quality REST API (v1) is a JSON API served from
+  https://api.codeclimate.com/v1 and authenticated with a personal access
+  token. Code Climate does not publish specific numeric request-per-minute
+  or request-per-day limits for the public API; throttling is enforced at
+  the platform level and product consumption is governed by per-plan
+  monthly analysis-minute allotments rather than per-request quotas.
+  Specific API rate-limit values are not reconciled in this artifact.
+notes: >-
+  Confirm any documented per-token or per-IP request limits and the exact
+  throttled response code and Retry-After behavior during reconciliation;
+  values are not published on the public API reference as of the research
+  date.
+sources:
+- https://developer.codeclimate.com/
+- https://docs.codeclimate.com/docs/getting-started-test-coverage
+responseCodes:
+  throttled: 429
+limits:
+- name: Personal Access Token Requests
+  scope: token
+  metric: requests
+  limit: see provider documentation
+  notes: Public API request limits are not published; enforced at platform level.
+- name: Analysis Minutes
+  scope: account
+  metric: minutes
+  limit: per-plan monthly allotment
+  notes: Product analysis consumption is metered by plan (Free 1,000; Pro 20,000; Enterprise 75,000 minutes per month).
+- name: Test File Reports Batch
+  scope: repo
+  metric: records
+  limit: 500 per batch
+  notes: Test file report batch uploads accept up to 500 source-file records per request.
+policies:
+- name: Tiered Allotments
+  description: Monthly analysis-minute allotments scale with the Free, Pro, and Enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on any throttled (429) response.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

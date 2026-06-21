@@ -1,0 +1,686 @@
+openapi: 3.0.1
+info:
+  title: Code Climate Quality API
+  description: >-
+    The Code Climate Quality REST API (v1) complies with REST conventions and
+    the JSON API specification. It exposes organizations, repositories,
+    maintainability and test-coverage analysis, snapshots, and issues.
+    Authenticated calls require an Authorization header carrying a personal
+    access token in the form `Authorization: Token token={TOKEN}`.
+  termsOfService: https://codeclimate.com/terms
+  contact:
+    name: Code Climate Support
+    email: hello@codeclimate.com
+  version: 'v1'
+servers:
+  - url: https://api.codeclimate.com/v1
+security:
+  - TokenAuth: []
+tags:
+  - name: Organizations
+  - name: Repositories
+  - name: Snapshots
+  - name: Issues
+  - name: Test Coverage
+  - name: Services
+paths:
+  /user:
+    get:
+      operationId: getCurrentUser
+      tags:
+        - Organizations
+      summary: Get the authenticated user
+      description: Returns the user associated with the supplied access token.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/UserDocument'
+  /orgs:
+    get:
+      operationId: listOrgs
+      tags:
+        - Organizations
+      summary: List organizations
+      description: Lists the organizations the authenticated user belongs to.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/OrgCollection'
+  /orgs/{org_id}/repos:
+    get:
+      operationId: listOrgRepos
+      tags:
+        - Repositories
+      summary: List repositories in an organization
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for paginated results.
+        - name: github_slug
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter repositories by GitHub slug (owner/name).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/RepoCollection'
+    post:
+      operationId: createRepo
+      tags:
+        - Repositories
+      summary: Add a private repository to an organization
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/RepoCreateRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/RepoDocument'
+  /orgs/{org_id}/repos/{repo_id}:
+    put:
+      operationId: updateRepo
+      tags:
+        - Repositories
+      summary: Update a repository
+      parameters:
+        - $ref: '#/components/parameters/OrgId'
+        - $ref: '#/components/parameters/RepoId'
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/RepoUpdateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/RepoDocument'
+  /repos:
+    get:
+      operationId: getRepoBySlug
+      tags:
+        - Repositories
+      summary: Look up a repository by GitHub slug
+      parameters:
+        - name: github_slug
+          in: query
+          required: true
+          schema:
+            type: string
+          description: GitHub slug in the form owner/name.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/RepoCollection'
+  /repos/{repo_id}:
+    get:
+      operationId: getRepo
+      tags:
+        - Repositories
+      summary: Get a repository
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/RepoDocument'
+  /repos/{repo_id}/services:
+    get:
+      operationId: listRepoServices
+      tags:
+        - Services
+      summary: List services configured on a repository
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ServiceCollection'
+  /repos/{repo_id}/snapshots/{snapshot_id}:
+    get:
+      operationId: getSnapshot
+      tags:
+        - Snapshots
+      summary: Get a repository snapshot
+      description: >-
+        Returns a snapshot, which groups the issues, ratings, and metrics
+        produced for a particular commit on a repository.
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+        - $ref: '#/components/parameters/SnapshotId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SnapshotDocument'
+  /repos/{repo_id}/snapshots/{snapshot_id}/issues:
+    get:
+      operationId: listSnapshotIssues
+      tags:
+        - Issues
+      summary: List issues in a snapshot
+      description: >-
+        Lists the code quality issues contained in a snapshot, optionally
+        filtered by engine, category, severity, or location path.
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+        - $ref: '#/components/parameters/SnapshotId'
+        - name: filter[severity]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter issues by severity.
+        - name: filter[category]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter issues by category.
+        - name: page[number]
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for paginated results.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IssueCollection'
+  /test_reports:
+    post:
+      operationId: createTestReport
+      tags:
+        - Test Coverage
+      summary: Create a test report (coverage upload)
+      description: >-
+        Default endpoint used by the Code Climate test reporter to upload test
+        coverage information. Authenticated with the repository-scoped reporter
+        identifier (CC_TEST_REPORTER_ID) rather than a personal access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestReportUploadRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+  /repos/{repo_id}/test_reports:
+    get:
+      operationId: listTestReports
+      tags:
+        - Test Coverage
+      summary: List test reports for a repository
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TestReportCollection'
+  /repos/{repo_id}/test_reports/{test_report_id}:
+    get:
+      operationId: getTestReport
+      tags:
+        - Test Coverage
+      summary: Get a test report
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+        - name: test_report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TestReportDocument'
+  /repos/{repo_id}/test_reports/{test_report_id}/test_file_reports:
+    get:
+      operationId: listTestFileReports
+      tags:
+        - Test Coverage
+      summary: List per-file test coverage reports
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+        - name: test_report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TestFileReportCollection'
+  /repos/{repo_id}/test_reports/{test_report_id}/test_file_reports/batch:
+    post:
+      operationId: createTestFileReportsBatch
+      tags:
+        - Test Coverage
+      summary: Create a batch of test file reports
+      description: >-
+        Uploads a batch of up to 500 source-file coverage records for a test
+        report.
+      parameters:
+        - $ref: '#/components/parameters/RepoId'
+        - name: test_report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/TestFileReportBatchRequest'
+      responses:
+        '201':
+          description: Created
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Personal access token passed as `Authorization: Token token={TOKEN}`.
+  parameters:
+    OrgId:
+      name: org_id
+      in: path
+      required: true
+      description: The organization identifier.
+      schema:
+        type: string
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
+    SnapshotId:
+      name: snapshot_id
+      in: path
+      required: true
+      description: The snapshot identifier.
+      schema:
+        type: string
+  schemas:
+    ResourceIdentifier:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: users
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+    UserDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
+    Org:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: orgs
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+    OrgCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Org'
+    Repo:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: repos
+        attributes:
+          type: object
+          properties:
+            human_name:
+              type: string
+            github_slug:
+              type: string
+            url:
+              type: string
+            score:
+              type: string
+            last_activity_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            latest_default_branch_snapshot:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ResourceIdentifier'
+            latest_default_branch_test_report:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ResourceIdentifier'
+    RepoDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Repo'
+    RepoCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Repo'
+    RepoCreateRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: repos
+            attributes:
+              type: object
+              properties:
+                url:
+                  type: string
+                  description: Git URL of the private repository to add.
+    RepoUpdateRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: repos
+            attributes:
+              type: object
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: snapshots
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            committed_at:
+              type: string
+              format: date-time
+            created_at:
+              type: string
+              format: date-time
+            ratings:
+              type: array
+              items:
+                type: object
+                properties:
+                  measure:
+                    type: string
+                  letter:
+                    type: string
+    SnapshotDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Snapshot'
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: issues
+        attributes:
+          type: object
+          properties:
+            check_name:
+              type: string
+            description:
+              type: string
+            categories:
+              type: array
+              items:
+                type: string
+            severity:
+              type: string
+            engine_name:
+              type: string
+            fingerprint:
+              type: string
+            location:
+              type: object
+              properties:
+                path:
+                  type: string
+                lines:
+                  type: object
+                  properties:
+                    begin:
+                      type: integer
+                    end:
+                      type: integer
+    IssueCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            total_count:
+              type: integer
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: services
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            options:
+              type: object
+    ServiceCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+    TestReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_reports
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            covered_percent:
+              type: number
+            received_at:
+              type: string
+              format: date-time
+            state:
+              type: string
+    TestReportDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TestReport'
+    TestReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestReport'
+    TestReportUploadRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            covered_percent:
+              type: number
+            line_counts:
+              type: object
+              properties:
+                covered:
+                  type: integer
+                missed:
+                  type: integer
+                total:
+                  type: integer
+    TestFileReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_file_reports
+        attributes:
+          type: object
+          properties:
+            path:
+              type: string
+            covered_percent:
+              type: number
+            line_counts:
+              type: object
+              properties:
+                covered:
+                  type: integer
+                missed:
+                  type: integer
+                total:
+                  type: integer
+    TestFileReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestFileReport'
+    TestFileReportBatchRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          maxItems: 500
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: test_file_reports
+              attributes:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  coverage:
+                    type: string
+                  covered_percent:
+                    type: number

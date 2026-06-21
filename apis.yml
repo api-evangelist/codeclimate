@@ -1,0 +1,128 @@
+aid: codeclimate
+url: https://raw.githubusercontent.com/api-evangelist/codeclimate/refs/heads/main/apis.yml
+name: Code Climate
+kind: company
+description: Code Climate provides automated code review and engineering intelligence
+  for software teams. The Quality REST API (v1) exposes organizations, repositories,
+  maintainability and test-coverage analysis, snapshots, and issues, while Velocity
+  surfaces engineering analytics across the software delivery lifecycle.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Code Quality
+- Static Analysis
+- Test Coverage
+- Engineering Analytics
+- DevOps
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: codeclimate:repos
+  name: Code Climate Repos API
+  tags:
+  - Repositories
+  - Organizations
+  - Code Quality
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.codeclimate.com/
+  baseURL: https://api.codeclimate.com/v1
+  properties:
+  - url: https://developer.codeclimate.com/
+    type: Documentation
+  - url: https://developer.codeclimate.com/
+    type: APIReference
+  - url: openapi/codeclimate-openapi.yml
+    type: OpenAPI
+  description: Manage and read repositories under an organization, including adding
+    private repos, listing repos, and retrieving repository metadata and analysis
+    relationships.
+- aid: codeclimate:issues
+  name: Code Climate Issues API
+  tags:
+  - Issues
+  - Static Analysis
+  - Maintainability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.codeclimate.com/
+  baseURL: https://api.codeclimate.com/v1
+  properties:
+  - url: https://developer.codeclimate.com/
+    type: Documentation
+  - url: https://developer.codeclimate.com/
+    type: APIReference
+  - url: openapi/codeclimate-openapi.yml
+    type: OpenAPI
+  description: Read code quality issues detected within a repository snapshot, with
+    metadata describing the engine, category, severity, and source location of each
+    finding.
+- aid: codeclimate:test-coverage
+  name: Code Climate Test Coverage API
+  tags:
+  - Test Coverage
+  - Test Reports
+  - CI
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.codeclimate.com/
+  baseURL: https://api.codeclimate.com/v1
+  properties:
+  - url: https://developer.codeclimate.com/
+    type: Documentation
+  - url: https://docs.codeclimate.com/docs/getting-started-test-coverage
+    type: Documentation
+  - url: openapi/codeclimate-openapi.yml
+    type: OpenAPI
+  description: Submit and read test coverage data through test reports and per-file
+    test file reports, including batch upload of source-file coverage from CI via the
+    test reporter.
+- aid: codeclimate:snapshots
+  name: Code Climate Snapshots API
+  tags:
+  - Snapshots
+  - Analysis
+  - Ratings
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.codeclimate.com/
+  baseURL: https://api.codeclimate.com/v1
+  properties:
+  - url: https://developer.codeclimate.com/
+    type: Documentation
+  - url: https://developer.codeclimate.com/
+    type: APIReference
+  - url: openapi/codeclimate-openapi.yml
+    type: OpenAPI
+  description: Read repository analysis snapshots that group the issues, ratings, and
+    metrics produced for a given commit, along with the issues contained in a snapshot.
+- aid: codeclimate:velocity
+  name: Code Climate Velocity API
+  tags:
+  - Engineering Analytics
+  - Velocity
+  - Metrics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis
+  baseURL: https://api.codeclimate.com/v1
+  properties:
+  - url: https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis
+    type: Documentation
+  - url: openapi/codeclimate-openapi.yml
+    type: OpenAPI
+  description: Engineering analytics surfacing delivery metrics across the software
+    development lifecycle, complementing the Quality API for organization-level reporting.
+common:
+- type: GitHubOrganization
+  url: https://github.com/codeclimate
+- type: LinkedIn
+  url: https://www.linkedin.com/company/code-climate
+- type: Website
+  url: https://codeclimate.com
+- type: Documentation
+  url: https://developer.codeclimate.com/
+- type: Plans
+  url: plans/codeclimate-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/codeclimate-rate-limits.yml
+- type: FinOps
+  url: finops/codeclimate-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

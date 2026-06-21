@@ -1,0 +1,153 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Code Climate
+providerId: codeclimate
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Code Quality
+- Static Analysis
+- Test Coverage
+- Engineering Analytics
+- Plans
+description: >-
+  Code Climate (now operating as Qlty Cloud) prices its code quality and
+  coverage product on a per-contributor seat basis with a free tier, two
+  paid tiers, and Enterprise terms. Open source projects, and K-12 /
+  university class work, are free; registered 501(c)(3) non-profits receive
+  a discount. The REST API is included with the product rather than billed
+  separately. Per-seat prices below reflect the published Qlty pricing page
+  and are not separately reconciled in this artifact.
+notes: >-
+  Code Climate Quality rebranded to Qlty; the pricing page now lives at
+  qlty.sh/pricing. Verify current tiers, seat prices, and analysis-minute
+  allotments on the live pricing page during reconciliation.
+sources:
+- https://codeclimate.com/quality/pricing
+- https://qlty.sh/pricing
+- https://docs.codeclimate.com/docs/billing-faq
+plans:
+- id: codeclimate-free
+  name: Free
+  type: free
+  description: >-
+    Free tier with linting, auto-formatting, code coverage and
+    maintainability analysis, unlimited public and private contributors,
+    capped monthly analysis minutes and AI autofixes, and community support.
+  entries:
+  - label: Seat
+    name: free_seat
+    type: free
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: true
+  - label: Analysis Minutes
+    name: free_analysis_minutes
+    type: usage
+    metric: minutes
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Code Coverage
+  - name: Maintainability Analysis
+  - name: Linting and Auto-Formatting
+- id: codeclimate-pro
+  name: Pro
+  type: paid
+  description: >-
+    Per-contributor plan adding shared configurations, trends and hotspots,
+    one year of history, accelerated analysis, higher analysis-minute and
+    AI-autofix allotments, and email support.
+  entries:
+  - label: Seat
+    name: pro_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $20 per contributor / month
+    userMultiplied: true
+  - label: Analysis Minutes
+    name: pro_analysis_minutes
+    type: usage
+    metric: minutes
+    limit: 20000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Trends and Hotspots
+  - name: Shared Configurations
+  - name: One Year of History
+- id: codeclimate-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Per-contributor Enterprise plan adding advanced analytics, organization
+    policies, priority support with SLA, manual invoicing, a named account
+    manager, and the highest analysis-minute allotment. Annual volume
+    discounts apply (5% at 100+ seats, 10% at 200+ seats, negotiable above
+    300).
+  entries:
+  - label: Seat
+    name: enterprise_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $30 per contributor / month
+    userMultiplied: true
+  - label: Analysis Minutes
+    name: enterprise_analysis_minutes
+    type: usage
+    metric: minutes
+    limit: 75000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Advanced Analytics
+  - name: Organization Policies
+  - name: Priority Support with SLA
+- id: codeclimate-open-source
+  name: Open Source
+  type: free
+  description: >-
+    Free for community-based open source projects, and for K-12 or
+    university class work. Registered 501(c)(3) non-profits receive a 10%
+    discount.
+  entries:
+  - label: Open Source Seat
+    name: oss_seat
+    type: free
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: true
+  elements:
+  - name: Open Source Analysis
+  - name: Education Use
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

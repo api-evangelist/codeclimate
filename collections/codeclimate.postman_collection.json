@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "Code Climate Quality API",
+    "description": "Code Climate Quality REST API (v1). JSON API served from https://api.codeclimate.com/v1 and authenticated with a personal access token via the Authorization header (Token token={TOKEN}).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "in", "value": "header", "type": "string" },
+      { "key": "key", "value": "Authorization", "type": "string" },
+      { "key": "value", "value": "Token token={{token}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.codeclimate.com/v1", "type": "string" },
+    { "key": "token", "value": "", "type": "string" },
+    { "key": "org_id", "value": "", "type": "string" },
+    { "key": "repo_id", "value": "", "type": "string" },
+    { "key": "snapshot_id", "value": "", "type": "string" },
+    { "key": "test_report_id", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/user", "host": ["{{baseUrl}}"], "path": ["user"] }
+          }
+        },
+        {
+          "name": "List Organizations",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/orgs", "host": ["{{baseUrl}}"], "path": ["orgs"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Repositories",
+      "item": [
+        {
+          "name": "List Organization Repos",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/orgs/{{org_id}}/repos", "host": ["{{baseUrl}}"], "path": ["orgs", "{{org_id}}", "repos"] }
+          }
+        },
+        {
+          "name": "Add Private Repo",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/vnd.api+json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"repos\",\n    \"attributes\": {\n      \"url\": \"https://github.com/owner/name\"\n    }\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/orgs/{{org_id}}/repos", "host": ["{{baseUrl}}"], "path": ["orgs", "{{org_id}}", "repos"] }
+          }
+        },
+        {
+          "name": "Update Repo",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/vnd.api+json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"repos\",\n    \"attributes\": {}\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/orgs/{{org_id}}/repos/{{repo_id}}", "host": ["{{baseUrl}}"], "path": ["orgs", "{{org_id}}", "repos", "{{repo_id}}"] }
+          }
+        },
+        {
+          "name": "Get Repo By GitHub Slug",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/repos?github_slug=owner/name",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos"],
+              "query": [{ "key": "github_slug", "value": "owner/name" }]
+            }
+          }
+        },
+        {
+          "name": "Get Repo",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}"] }
+          }
+        },
+        {
+          "name": "List Repo Services",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/services", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "services"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Snapshots",
+      "item": [
+        {
+          "name": "Get Snapshot",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/snapshots/{{snapshot_id}}", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "snapshots", "{{snapshot_id}}"] }
+          }
+        },
+        {
+          "name": "List Snapshot Issues",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/snapshots/{{snapshot_id}}/issues", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "snapshots", "{{snapshot_id}}", "issues"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Coverage",
+      "item": [
+        {
+          "name": "List Test Reports",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/test_reports", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "test_reports"] }
+          }
+        },
+        {
+          "name": "Get Test Report",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/test_reports/{{test_report_id}}", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "test_reports", "{{test_report_id}}"] }
+          }
+        },
+        {
+          "name": "List Test File Reports",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.api+json" }],
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/test_reports/{{test_report_id}}/test_file_reports", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "test_reports", "{{test_report_id}}", "test_file_reports"] }
+          }
+        },
+        {
+          "name": "Create Test File Reports Batch",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/vnd.api+json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"type\": \"test_file_reports\",\n      \"attributes\": {\n        \"path\": \"lib/example.rb\",\n        \"covered_percent\": 87.5\n      }\n    }\n  ]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/repos/{{repo_id}}/test_reports/{{test_report_id}}/test_file_reports/batch", "host": ["{{baseUrl}}"], "path": ["repos", "{{repo_id}}", "test_reports", "{{test_report_id}}", "test_file_reports", "batch"] }
+          }
+        }
+      ]
+    }
+  ]
+}
