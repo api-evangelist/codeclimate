@@ -109,6 +109,12 @@ apis:
   description: Engineering analytics surfacing delivery metrics across the software
     development lifecycle, complementing the Quality API for organization-level reporting.
 common:
+- type: VulnerabilityDisclosure
+  url: security/codeclimate-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/codeclimate-domain-security.yml
+- type: Authentication
+  url: authentication/codeclimate-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/codeclimate
 - type: LinkedIn
@@ -123,6 +129,8 @@ common:
   url: rate-limits/codeclimate-rate-limits.yml
 - type: FinOps
   url: finops/codeclimate-finops.yml
+- url: http://codeclimate.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
