@@ -109,6 +109,8 @@ apis:
   description: Engineering analytics surfacing delivery metrics across the software
     development lifecycle, complementing the Quality API for organization-level reporting.
 common:
+- type: AgenticAccess
+  url: agentic-access/codeclimate-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/codeclimate-vulnerability-disclosure.yml
 - type: DomainSecurity

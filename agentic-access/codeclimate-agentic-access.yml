@@ -1,0 +1,190 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/codeclimate-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 15
+  by_action_class:
+    connected: 11
+    acting: 4
+  by_consequence:
+    read: 11
+    write: 4
+  human_in_the_loop_required: 0
+operations:
+- path: /user
+  method: get
+  operationId: getCurrentUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /orgs
+  method: get
+  operationId: listOrgs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /orgs/{org_id}/repos
+  method: get
+  operationId: listOrgRepos
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /orgs/{org_id}/repos
+  method: post
+  operationId: createRepo
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /orgs/{org_id}/repos/{repo_id}
+  method: put
+  operationId: updateRepo
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repos
+  method: get
+  operationId: getRepoBySlug
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}
+  method: get
+  operationId: getRepo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}/services
+  method: get
+  operationId: listRepoServices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}/snapshots/{snapshot_id}
+  method: get
+  operationId: getSnapshot
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}/snapshots/{snapshot_id}/issues
+  method: get
+  operationId: listSnapshotIssues
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /test_reports
+  method: post
+  operationId: createTestReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repos/{repo_id}/test_reports
+  method: get
+  operationId: listTestReports
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}/test_reports/{test_report_id}
+  method: get
+  operationId: getTestReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}/test_reports/{test_report_id}/test_file_reports
+  method: get
+  operationId: listTestFileReports
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repos/{repo_id}/test_reports/{test_report_id}/test_file_reports/batch
+  method: post
+  operationId: createTestFileReportsBatch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
