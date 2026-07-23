@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: Code Climate Quality Issues Snapshots API
+  description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
+  termsOfService: https://codeclimate.com/terms
+  contact:
+    name: Code Climate Support
+    email: hello@codeclimate.com
+  version: v1
+servers:
+- url: https://api.codeclimate.com/v1
+security:
+- TokenAuth: []
+tags:
+- name: Snapshots
+paths:
+  /repos/{repo_id}/snapshots/{snapshot_id}:
+    get:
+      operationId: getSnapshot
+      tags:
+      - Snapshots
+      summary: Get a repository snapshot
+      description: Returns a snapshot, which groups the issues, ratings, and metrics produced for a particular commit on a repository.
+      parameters:
+      - $ref: '#/components/parameters/RepoId'
+      - $ref: '#/components/parameters/SnapshotId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SnapshotDocument'
+components:
+  schemas:
+    SnapshotDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Snapshot'
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: snapshots
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            committed_at:
+              type: string
+              format: date-time
+            created_at:
+              type: string
+              format: date-time
+            ratings:
+              type: array
+              items:
+                type: object
+                properties:
+                  measure:
+                    type: string
+                  letter:
+                    type: string
+  parameters:
+    SnapshotId:
+      name: snapshot_id
+      in: path
+      required: true
+      description: The snapshot identifier.
+      schema:
+        type: string
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Personal access token passed as `Authorization: Token token={TOKEN}`.'

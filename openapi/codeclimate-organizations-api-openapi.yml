@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+  title: Code Climate Quality Issues Organizations API
+  description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
+  termsOfService: https://codeclimate.com/terms
+  contact:
+    name: Code Climate Support
+    email: hello@codeclimate.com
+  version: v1
+servers:
+- url: https://api.codeclimate.com/v1
+security:
+- TokenAuth: []
+tags:
+- name: Organizations
+paths:
+  /user:
+    get:
+      operationId: getCurrentUser
+      tags:
+      - Organizations
+      summary: Get the authenticated user
+      description: Returns the user associated with the supplied access token.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/UserDocument'
+  /orgs:
+    get:
+      operationId: listOrgs
+      tags:
+      - Organizations
+      summary: List organizations
+      description: Lists the organizations the authenticated user belongs to.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/OrgCollection'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: users
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+    OrgCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Org'
+    UserDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
+    Org:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: orgs
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Personal access token passed as `Authorization: Token token={TOKEN}`.'

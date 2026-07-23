@@ -1,0 +1,229 @@
+openapi: 3.0.1
+info:
+  title: Code Climate Quality Issues Test Coverage API
+  description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
+  termsOfService: https://codeclimate.com/terms
+  contact:
+    name: Code Climate Support
+    email: hello@codeclimate.com
+  version: v1
+servers:
+- url: https://api.codeclimate.com/v1
+security:
+- TokenAuth: []
+tags:
+- name: Test Coverage
+paths:
+  /test_reports:
+    post:
+      operationId: createTestReport
+      tags:
+      - Test Coverage
+      summary: Create a test report (coverage upload)
+      description: Default endpoint used by the Code Climate test reporter to upload test coverage information. Authenticated with the repository-scoped reporter identifier (CC_TEST_REPORTER_ID) rather than a personal access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestReportUploadRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+  /repos/{repo_id}/test_reports:
+    get:
+      operationId: listTestReports
+      tags:
+      - Test Coverage
+      summary: List test reports for a repository
+      parameters:
+      - $ref: '#/components/parameters/RepoId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TestReportCollection'
+  /repos/{repo_id}/test_reports/{test_report_id}:
+    get:
+      operationId: getTestReport
+      tags:
+      - Test Coverage
+      summary: Get a test report
+      parameters:
+      - $ref: '#/components/parameters/RepoId'
+      - name: test_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TestReportDocument'
+  /repos/{repo_id}/test_reports/{test_report_id}/test_file_reports:
+    get:
+      operationId: listTestFileReports
+      tags:
+      - Test Coverage
+      summary: List per-file test coverage reports
+      parameters:
+      - $ref: '#/components/parameters/RepoId'
+      - name: test_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TestFileReportCollection'
+  /repos/{repo_id}/test_reports/{test_report_id}/test_file_reports/batch:
+    post:
+      operationId: createTestFileReportsBatch
+      tags:
+      - Test Coverage
+      summary: Create a batch of test file reports
+      description: Uploads a batch of up to 500 source-file coverage records for a test report.
+      parameters:
+      - $ref: '#/components/parameters/RepoId'
+      - name: test_report_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/TestFileReportBatchRequest'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    TestReportUploadRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            covered_percent:
+              type: number
+            line_counts:
+              type: object
+              properties:
+                covered:
+                  type: integer
+                missed:
+                  type: integer
+                total:
+                  type: integer
+    TestReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_reports
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            covered_percent:
+              type: number
+            received_at:
+              type: string
+              format: date-time
+            state:
+              type: string
+    TestFileReportBatchRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          maxItems: 500
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: test_file_reports
+              attributes:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  coverage:
+                    type: string
+                  covered_percent:
+                    type: number
+    TestFileReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestFileReport'
+    TestReportDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TestReport'
+    TestReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestReport'
+    TestFileReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_file_reports
+        attributes:
+          type: object
+          properties:
+            path:
+              type: string
+            covered_percent:
+              type: number
+            line_counts:
+              type: object
+              properties:
+                covered:
+                  type: integer
+                missed:
+                  type: integer
+                total:
+                  type: integer
+  parameters:
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Personal access token passed as `Authorization: Token token={TOKEN}`.'

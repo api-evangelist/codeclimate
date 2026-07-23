@@ -1,0 +1,123 @@
+openapi: 3.0.1
+info:
+  title: Code Climate Quality Issues API
+  description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
+  termsOfService: https://codeclimate.com/terms
+  contact:
+    name: Code Climate Support
+    email: hello@codeclimate.com
+  version: v1
+servers:
+- url: https://api.codeclimate.com/v1
+security:
+- TokenAuth: []
+tags:
+- name: Issues
+paths:
+  /repos/{repo_id}/snapshots/{snapshot_id}/issues:
+    get:
+      operationId: listSnapshotIssues
+      tags:
+      - Issues
+      summary: List issues in a snapshot
+      description: Lists the code quality issues contained in a snapshot, optionally filtered by engine, category, severity, or location path.
+      parameters:
+      - $ref: '#/components/parameters/RepoId'
+      - $ref: '#/components/parameters/SnapshotId'
+      - name: filter[severity]
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter issues by severity.
+      - name: filter[category]
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter issues by category.
+      - name: page[number]
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for paginated results.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IssueCollection'
+components:
+  schemas:
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: issues
+        attributes:
+          type: object
+          properties:
+            check_name:
+              type: string
+            description:
+              type: string
+            categories:
+              type: array
+              items:
+                type: string
+            severity:
+              type: string
+            engine_name:
+              type: string
+            fingerprint:
+              type: string
+            location:
+              type: object
+              properties:
+                path:
+                  type: string
+                lines:
+                  type: object
+                  properties:
+                    begin:
+                      type: integer
+                    end:
+                      type: integer
+    IssueCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            total_count:
+              type: integer
+  parameters:
+    SnapshotId:
+      name: snapshot_id
+      in: path
+      required: true
+      description: The snapshot identifier.
+      schema:
+        type: string
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Personal access token passed as `Authorization: Token token={TOKEN}`.'
