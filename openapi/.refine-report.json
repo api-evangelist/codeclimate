@@ -1,0 +1,24 @@
+{
+  "provider": "codeclimate",
+  "sources": [
+    "codeclimate-issues-api-openapi.yml",
+    "codeclimate-organizations-api-openapi.yml",
+    "codeclimate-repositories-api-openapi.yml",
+    "codeclimate-services-api-openapi.yml",
+    "codeclimate-snapshots-api-openapi.yml",
+    "codeclimate-test-coverage-api-openapi.yml"
+  ],
+  "outputs": [
+    "codeclimate-issues-api-openapi.yml",
+    "codeclimate-organizations-api-openapi.yml",
+    "codeclimate-repositories-api-openapi.yml",
+    "codeclimate-services-api-openapi.yml",
+    "codeclimate-snapshots-api-openapi.yml",
+    "codeclimate-test-coverage-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
