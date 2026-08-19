@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Code Climate Quality Issues Repositories API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List repositories in an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/orgs/:org_id/repos",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The organization identifier."
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "github_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter repositories by GitHub slug (owner/name)."
+              }
+            ]
+          },
+          "docs": "List repositories in an organization"
+        },
+        {
+          "info": {
+            "name": "Add a private repository to an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.codeclimate.com/v1/orgs/:org_id/repos",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The organization identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a private repository to an organization"
+        },
+        {
+          "info": {
+            "name": "Update a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.codeclimate.com/v1/orgs/:org_id/repos/:repo_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The organization identifier."
+              },
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a repository"
+        },
+        {
+          "info": {
+            "name": "Look up a repository by GitHub slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos",
+            "params": [
+              {
+                "name": "github_slug",
+                "value": "",
+                "type": "query",
+                "description": "GitHub slug in the form owner/name."
+              }
+            ]
+          },
+          "docs": "Look up a repository by GitHub slug"
+        },
+        {
+          "info": {
+            "name": "Get a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              }
+            ]
+          },
+          "docs": "Get a repository"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

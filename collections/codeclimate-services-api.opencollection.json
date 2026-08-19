@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Code Climate Quality Issues Services API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List services configured on a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/services",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              }
+            ]
+          },
+          "docs": "List services configured on a repository"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,163 @@
+{
+  "item": [
+    {
+      "id": "46ad9757-3e0a-4abb-a88a-d7e832a21573",
+      "name": "Snapshots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f86a47fc-9e72-413c-a86a-167218e136a6",
+          "name": "Get a repository snapshot",
+          "request": {
+            "name": "Get a repository snapshot",
+            "description": {
+              "content": "Returns a snapshot, which groups the issues, ratings, and metrics produced for a particular commit on a repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repos",
+                ":repo_id",
+                "snapshots",
+                ":snapshot_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_id",
+                  "description": "(Required) The repository identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) The snapshot identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3db4cd1e-1e79-475b-875b-31501f29e468",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":repo_id",
+                    "snapshots",
+                    ":snapshot_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_id",
+                      "description": "(Required) The repository identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) The snapshot identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"snapshots\",\n    \"attributes\": {\n      \"commit_sha\": \"string\",\n      \"committed_at\": \"2025-01-23T17:33:00.673Z\",\n      \"created_at\": \"1949-05-27T15:14:34.396Z\",\n      \"ratings\": [\n        {\n          \"measure\": \"string\",\n          \"letter\": \"string\"\n        },\n        {\n          \"measure\": \"string\",\n          \"letter\": \"string\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.codeclimate.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "306f2902-7b69-417a-a9c2-ae9cc3f2b00c",
+    "name": "Code Climate Quality Issues Snapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.\n\nContact Support:\n Name: Code Climate Support\n Email: hello@codeclimate.com",
+      "type": "text/plain"
+    }
+  }
+}

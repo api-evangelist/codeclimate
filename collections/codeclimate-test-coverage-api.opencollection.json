@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Code Climate Quality Issues Test Coverage API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Test Coverage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a test report (coverage upload)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.codeclimate.com/v1/test_reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Default endpoint used by the Code Climate test reporter to upload test coverage information. Authenticated with the repository-scoped reporter identifier (CC_TEST_REPORTER_ID) rather than a personal access token."
+        },
+        {
+          "info": {
+            "name": "List test reports for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/test_reports",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              }
+            ]
+          },
+          "docs": "List test reports for a repository"
+        },
+        {
+          "info": {
+            "name": "Get a test report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/test_reports/:test_report_id",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              },
+              {
+                "name": "test_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a test report"
+        },
+        {
+          "info": {
+            "name": "List per-file test coverage reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/test_reports/:test_report_id/test_file_reports",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              },
+              {
+                "name": "test_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List per-file test coverage reports"
+        },
+        {
+          "info": {
+            "name": "Create a batch of test file reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/test_reports/:test_report_id/test_file_reports/batch",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              },
+              {
+                "name": "test_report_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads a batch of up to 500 source-file coverage records for a test report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

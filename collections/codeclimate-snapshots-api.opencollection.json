@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Code Climate Quality Issues Snapshots API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a repository snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/snapshots/:snapshot_id",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              },
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path",
+                "description": "The snapshot identifier."
+              }
+            ]
+          },
+          "docs": "Returns a snapshot, which groups the issues, ratings, and metrics produced for a particular commit on a repository."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

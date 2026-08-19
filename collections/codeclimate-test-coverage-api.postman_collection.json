@@ -1,0 +1,637 @@
+{
+  "item": [
+    {
+      "id": "96853d94-64ba-4ff7-9a36-6d95f1f1d564",
+      "name": "Test Coverage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3caab6e-83b2-4dc3-9013-d61a5de07b66",
+          "name": "Create a test report (coverage upload)",
+          "request": {
+            "name": "Create a test report (coverage upload)",
+            "description": {
+              "content": "Default endpoint used by the Code Climate test reporter to upload test coverage information. Authenticated with the repository-scoped reporter identifier (CC_TEST_REPORTER_ID) rather than a personal access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "test_reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"covered_percent\": \"<number>\",\n    \"line_counts\": {\n      \"covered\": \"<integer>\",\n      \"missed\": \"<integer>\",\n      \"total\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a897851-662d-4fb0-8109-a71233eef3d5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "test_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"covered_percent\": \"<number>\",\n    \"line_counts\": {\n      \"covered\": \"<integer>\",\n      \"missed\": \"<integer>\",\n      \"total\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e6dbb727-b440-4589-8b16-8827ae52da6f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "test_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"covered_percent\": \"<number>\",\n    \"line_counts\": {\n      \"covered\": \"<integer>\",\n      \"missed\": \"<integer>\",\n      \"total\": \"<integer>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4b3d584-6b55-466b-adbd-a6c0ea0a44fe",
+          "name": "List test reports for a repository",
+          "request": {
+            "name": "List test reports for a repository",
+            "description": {},
+            "url": {
+              "path": [
+                "repos",
+                ":repo_id",
+                "test_reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_id",
+                  "description": "(Required) The repository identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1df45c9-137e-46ab-953f-be2f481b6059",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":repo_id",
+                    "test_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_id",
+                      "description": "(Required) The repository identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"test_reports\",\n      \"attributes\": {\n        \"commit_sha\": \"string\",\n        \"covered_percent\": 5662.771764039117,\n        \"received_at\": \"1956-01-16T18:21:44.602Z\",\n        \"state\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"test_reports\",\n      \"attributes\": {\n        \"commit_sha\": \"string\",\n        \"covered_percent\": 1918.1396099831504,\n        \"received_at\": \"1976-07-17T03:51:19.495Z\",\n        \"state\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d1164d4-9855-4266-a41b-8bdc5d6ef377",
+          "name": "Get a test report",
+          "request": {
+            "name": "Get a test report",
+            "description": {},
+            "url": {
+              "path": [
+                "repos",
+                ":repo_id",
+                "test_reports",
+                ":test_report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_id",
+                  "description": "(Required) The repository identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "test_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "068b3451-ba80-4b0e-90c8-3967d34377ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":repo_id",
+                    "test_reports",
+                    ":test_report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_id",
+                      "description": "(Required) The repository identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "test_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"test_reports\",\n    \"attributes\": {\n      \"commit_sha\": \"string\",\n      \"covered_percent\": 664.8957303051706,\n      \"received_at\": \"1968-01-03T17:47:06.575Z\",\n      \"state\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbd7c21a-ef07-43f6-a1f7-f7f07aac284d",
+          "name": "List per-file test coverage reports",
+          "request": {
+            "name": "List per-file test coverage reports",
+            "description": {},
+            "url": {
+              "path": [
+                "repos",
+                ":repo_id",
+                "test_reports",
+                ":test_report_id",
+                "test_file_reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_id",
+                  "description": "(Required) The repository identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "test_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96b5fd18-05c5-4c81-a364-81568492d0b6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":repo_id",
+                    "test_reports",
+                    ":test_report_id",
+                    "test_file_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_id",
+                      "description": "(Required) The repository identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "test_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"test_file_reports\",\n      \"attributes\": {\n        \"path\": \"string\",\n        \"covered_percent\": 5876.655011588381,\n        \"line_counts\": {\n          \"covered\": 1433,\n          \"missed\": 8193,\n          \"total\": 9874\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"test_file_reports\",\n      \"attributes\": {\n        \"path\": \"string\",\n        \"covered_percent\": 7013.837775505097,\n        \"line_counts\": {\n          \"covered\": 1707,\n          \"missed\": 1275,\n          \"total\": 8125\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31775c82-0006-45dd-87a9-f547d3337612",
+          "name": "Create a batch of test file reports",
+          "request": {
+            "name": "Create a batch of test file reports",
+            "description": {
+              "content": "Uploads a batch of up to 500 source-file coverage records for a test report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repos",
+                ":repo_id",
+                "test_reports",
+                ":test_report_id",
+                "test_file_reports",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_id",
+                  "description": "(Required) The repository identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "test_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"path\": \"<string>\",\n        \"coverage\": \"<string>\",\n        \"covered_percent\": \"<number>\"\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"path\": \"<string>\",\n        \"coverage\": \"<string>\",\n        \"covered_percent\": \"<number>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "889d1d1c-f28b-4451-a83c-6879e91866c2",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":repo_id",
+                    "test_reports",
+                    ":test_report_id",
+                    "test_file_reports",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_id",
+                      "description": "(Required) The repository identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "test_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"type\": \"test_file_reports\",\n      \"attributes\": {\n        \"path\": \"<string>\",\n        \"coverage\": \"<string>\",\n        \"covered_percent\": \"<number>\"\n      }\n    },\n    {\n      \"type\": \"test_file_reports\",\n      \"attributes\": {\n        \"path\": \"<string>\",\n        \"coverage\": \"<string>\",\n        \"covered_percent\": \"<number>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.codeclimate.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c539a64-9a6b-450d-8bd4-4ab9c3a809db",
+    "name": "Code Climate Quality Issues Test Coverage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.\n\nContact Support:\n Name: Code Climate Support\n Email: hello@codeclimate.com",
+      "type": "text/plain"
+    }
+  }
+}

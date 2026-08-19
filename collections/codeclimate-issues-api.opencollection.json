@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Code Climate Quality Issues API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List issues in a snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.codeclimate.com/v1/repos/:repo_id/snapshots/:snapshot_id/issues",
+            "params": [
+              {
+                "name": "repo_id",
+                "value": "",
+                "type": "path",
+                "description": "The repository identifier."
+              },
+              {
+                "name": "snapshot_id",
+                "value": "",
+                "type": "path",
+                "description": "The snapshot identifier."
+              },
+              {
+                "name": "filter[severity]",
+                "value": "",
+                "type": "query",
+                "description": "Filter issues by severity."
+              },
+              {
+                "name": "filter[category]",
+                "value": "",
+                "type": "query",
+                "description": "Filter issues by category."
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              }
+            ]
+          },
+          "docs": "Lists the code quality issues contained in a snapshot, optionally filtered by engine, category, severity, or location path."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "06c36937-a89c-45e3-a618-4aeaf9e122d7",
+      "name": "Issues",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b18bda65-0f1c-4bf2-8278-f3b095637464",
+          "name": "List issues in a snapshot",
+          "request": {
+            "name": "List issues in a snapshot",
+            "description": {
+              "content": "Lists the code quality issues contained in a snapshot, optionally filtered by engine, category, severity, or location path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repos",
+                ":repo_id",
+                "snapshots",
+                ":snapshot_id",
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[severity]",
+                  "value": "<string>",
+                  "description": "Filter issues by severity."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[category]",
+                  "value": "<string>",
+                  "description": "Filter issues by category."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_id",
+                  "description": "(Required) The repository identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshot_id",
+                  "description": "(Required) The snapshot identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76281930-fed8-4919-bb21-59dd6149296c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":repo_id",
+                    "snapshots",
+                    ":snapshot_id",
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[severity]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[category]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_id",
+                      "description": "(Required) The repository identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshot_id",
+                      "description": "(Required) The snapshot identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"issues\",\n      \"attributes\": {\n        \"check_name\": \"string\",\n        \"description\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"severity\": \"string\",\n        \"engine_name\": \"string\",\n        \"fingerprint\": \"string\",\n        \"location\": {\n          \"path\": \"string\",\n          \"lines\": {\n            \"begin\": 5935,\n            \"end\": 1126\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"issues\",\n      \"attributes\": {\n        \"check_name\": \"string\",\n        \"description\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"severity\": \"string\",\n        \"engine_name\": \"string\",\n        \"fingerprint\": \"string\",\n        \"location\": {\n          \"path\": \"string\",\n          \"lines\": {\n            \"begin\": 8540,\n            \"end\": 6949\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"total_count\": 3153\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.codeclimate.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da042034-196e-4909-8c42-e0ed9a1e21d8",
+    "name": "Code Climate Quality Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.\n\nContact Support:\n Name: Code Climate Support\n Email: hello@codeclimate.com",
+      "type": "text/plain"
+    }
+  }
+}
