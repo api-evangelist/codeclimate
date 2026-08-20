@@ -54,6 +54,8 @@ apis:
   humanURL: https://developer.codeclimate.com/
   baseURL: https://api.codeclimate.com/v1
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
