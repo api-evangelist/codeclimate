@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Code Climate Quality Issues Services API
+  title: Code Climate Quality Services API
   description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
   termsOfService: https://codeclimate.com/terms
   contact:

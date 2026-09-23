@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Code Climate Quality Issues Repositories API
+  title: Code Climate Quality Repositories API
   description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
   termsOfService: https://codeclimate.com/terms
   contact:
@@ -120,13 +120,13 @@ paths:
                 $ref: '#/components/schemas/RepoDocument'
 components:
   schemas:
-    ResourceIdentifier:
+    RepoCollection:
       type: object
       properties:
-        id:
-          type: string
-        type:
-          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Repo'
     RepoUpdateRequest:
       type: object
       properties:
@@ -143,6 +143,28 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/Repo'
+    ResourceIdentifier:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+    RepoCreateRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: repos
+            attributes:
+              type: object
+              properties:
+                url:
+                  type: string
+                  description: Git URL of the private repository to add.
     Repo:
       type: object
       properties:
@@ -178,28 +200,6 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/ResourceIdentifier'
-    RepoCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Repo'
-    RepoCreateRequest:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: repos
-            attributes:
-              type: object
-              properties:
-                url:
-                  type: string
-                  description: Git URL of the private repository to add.
   parameters:
     OrgId:
       name: org_id

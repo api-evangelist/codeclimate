@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Code Climate Quality Issues Organizations API
+  title: Code Climate Quality Organizations API
   description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
   termsOfService: https://codeclimate.com/terms
   contact:
@@ -44,6 +44,24 @@ paths:
                 $ref: '#/components/schemas/OrgCollection'
 components:
   schemas:
+    Org:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: orgs
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+    UserDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
     User:
       type: object
       properties:
@@ -66,24 +84,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Org'
-    UserDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/User'
-    Org:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: orgs
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
   securitySchemes:
     TokenAuth:
       type: apiKey

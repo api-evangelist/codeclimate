@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Code Climate Quality Issues Test Coverage API
+  title: Code Climate Quality Test Coverage API
   description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
   termsOfService: https://codeclimate.com/terms
   contact:
@@ -112,64 +112,6 @@ paths:
           description: Created
 components:
   schemas:
-    TestReportUploadRequest:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            covered_percent:
-              type: number
-            line_counts:
-              type: object
-              properties:
-                covered:
-                  type: integer
-                missed:
-                  type: integer
-                total:
-                  type: integer
-    TestReport:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: test_reports
-        attributes:
-          type: object
-          properties:
-            commit_sha:
-              type: string
-            covered_percent:
-              type: number
-            received_at:
-              type: string
-              format: date-time
-            state:
-              type: string
-    TestFileReportBatchRequest:
-      type: object
-      properties:
-        data:
-          type: array
-          maxItems: 500
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                example: test_file_reports
-              attributes:
-                type: object
-                properties:
-                  path:
-                    type: string
-                  coverage:
-                    type: string
-                  covered_percent:
-                    type: number
     TestFileReportCollection:
       type: object
       properties:
@@ -182,13 +124,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/TestReport'
-    TestReportCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestReport'
     TestFileReport:
       type: object
       properties:
@@ -213,6 +148,71 @@ components:
                   type: integer
                 total:
                   type: integer
+    TestReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestReport'
+    TestReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_reports
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            covered_percent:
+              type: number
+            received_at:
+              type: string
+              format: date-time
+            state:
+              type: string
+    TestReportUploadRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            covered_percent:
+              type: number
+            line_counts:
+              type: object
+              properties:
+                covered:
+                  type: integer
+                missed:
+                  type: integer
+                total:
+                  type: integer
+    TestFileReportBatchRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          maxItems: 500
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: test_file_reports
+              attributes:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  coverage:
+                    type: string
+                  covered_percent:
+                    type: number
   parameters:
     RepoId:
       name: repo_id

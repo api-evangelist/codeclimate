@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Code Climate Quality Issues API
   description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
@@ -51,6 +51,18 @@ paths:
                 $ref: '#/components/schemas/IssueCollection'
 components:
   schemas:
+    IssueCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            total_count:
+              type: integer
     Issue:
       type: object
       properties:
@@ -88,18 +100,6 @@ components:
                       type: integer
                     end:
                       type: integer
-    IssueCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issue'
-        meta:
-          type: object
-          properties:
-            total_count:
-              type: integer
   parameters:
     SnapshotId:
       name: snapshot_id

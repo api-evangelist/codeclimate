@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Code Climate Quality Issues Snapshots API
+  title: Code Climate Quality Snapshots API
   description: 'The Code Climate Quality REST API (v1) complies with REST conventions and the JSON API specification. It exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues. Authenticated calls require an Authorization header carrying a personal access token in the form `Authorization: Token token={TOKEN}`.'
   termsOfService: https://codeclimate.com/terms
   contact:
@@ -33,11 +33,6 @@ paths:
                 $ref: '#/components/schemas/SnapshotDocument'
 components:
   schemas:
-    SnapshotDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Snapshot'
     Snapshot:
       type: object
       properties:
@@ -66,6 +61,11 @@ components:
                     type: string
                   letter:
                     type: string
+    SnapshotDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Snapshot'
   parameters:
     SnapshotId:
       name: snapshot_id
