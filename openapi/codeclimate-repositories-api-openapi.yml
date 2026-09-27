@@ -127,29 +127,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Repo'
-    RepoUpdateRequest:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: repos
-            attributes:
-              type: object
     RepoDocument:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Repo'
-    ResourceIdentifier:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
     RepoCreateRequest:
       type: object
       properties:
@@ -165,6 +147,24 @@ components:
                 url:
                   type: string
                   description: Git URL of the private repository to add.
+    RepoUpdateRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: repos
+            attributes:
+              type: object
+    ResourceIdentifier:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
     Repo:
       type: object
       properties:
@@ -201,18 +201,18 @@ components:
                 data:
                   $ref: '#/components/schemas/ResourceIdentifier'
   parameters:
-    OrgId:
-      name: org_id
-      in: path
-      required: true
-      description: The organization identifier.
-      schema:
-        type: string
     RepoId:
       name: repo_id
       in: path
       required: true
       description: The repository identifier.
+      schema:
+        type: string
+    OrgId:
+      name: org_id
+      in: path
+      required: true
+      description: The organization identifier.
       schema:
         type: string
   securitySchemes:

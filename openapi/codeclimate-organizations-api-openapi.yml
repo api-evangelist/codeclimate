@@ -57,11 +57,13 @@ components:
           properties:
             name:
               type: string
-    UserDocument:
+    OrgCollection:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/User'
+          type: array
+          items:
+            $ref: '#/components/schemas/Org'
     User:
       type: object
       properties:
@@ -77,13 +79,11 @@ components:
               type: string
             email:
               type: string
-    OrgCollection:
+    UserDocument:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Org'
+          $ref: '#/components/schemas/User'
   securitySchemes:
     TokenAuth:
       type: apiKey

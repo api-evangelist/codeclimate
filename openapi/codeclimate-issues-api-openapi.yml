@@ -50,19 +50,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/IssueCollection'
 components:
+  parameters:
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
+    SnapshotId:
+      name: snapshot_id
+      in: path
+      required: true
+      description: The snapshot identifier.
+      schema:
+        type: string
   schemas:
-    IssueCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issue'
-        meta:
-          type: object
-          properties:
-            total_count:
-              type: integer
     Issue:
       type: object
       properties:
@@ -100,21 +103,18 @@ components:
                       type: integer
                     end:
                       type: integer
-  parameters:
-    SnapshotId:
-      name: snapshot_id
-      in: path
-      required: true
-      description: The snapshot identifier.
-      schema:
-        type: string
-    RepoId:
-      name: repo_id
-      in: path
-      required: true
-      description: The repository identifier.
-      schema:
-        type: string
+    IssueCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            total_count:
+              type: integer
   securitySchemes:
     TokenAuth:
       type: apiKey

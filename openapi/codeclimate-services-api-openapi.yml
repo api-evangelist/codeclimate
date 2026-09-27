@@ -31,6 +31,13 @@ paths:
                 $ref: '#/components/schemas/ServiceCollection'
 components:
   schemas:
+    ServiceCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
     Service:
       type: object
       properties:
@@ -46,13 +53,6 @@ components:
               type: string
             options:
               type: object
-    ServiceCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
   parameters:
     RepoId:
       name: repo_id
