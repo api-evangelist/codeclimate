@@ -48,11 +48,6 @@ components:
       schema:
         type: string
   schemas:
-    SnapshotDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Snapshot'
     Snapshot:
       type: object
       properties:
@@ -81,6 +76,11 @@ components:
                     type: string
                   letter:
                     type: string
+    SnapshotDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Snapshot'
   securitySchemes:
     TokenAuth:
       type: apiKey

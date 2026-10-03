@@ -111,7 +111,35 @@ paths:
         '201':
           description: Created
 components:
+  parameters:
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
   schemas:
+    TestReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_reports
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            covered_percent:
+              type: number
+            received_at:
+              type: string
+              format: date-time
+            state:
+              type: string
     TestFileReportBatchRequest:
       type: object
       properties:
@@ -133,38 +161,6 @@ components:
                     type: string
                   covered_percent:
                     type: number
-    TestReportDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TestReport'
-    TestReport:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: test_reports
-        attributes:
-          type: object
-          properties:
-            commit_sha:
-              type: string
-            covered_percent:
-              type: number
-            received_at:
-              type: string
-              format: date-time
-            state:
-              type: string
-    TestFileReportCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestFileReport'
     TestReportUploadRequest:
       type: object
       properties:
@@ -182,13 +178,6 @@ components:
                   type: integer
                 total:
                   type: integer
-    TestReportCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestReport'
     TestFileReport:
       type: object
       properties:
@@ -213,14 +202,25 @@ components:
                   type: integer
                 total:
                   type: integer
-  parameters:
-    RepoId:
-      name: repo_id
-      in: path
-      required: true
-      description: The repository identifier.
-      schema:
-        type: string
+    TestFileReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestFileReport'
+    TestReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestReport'
+    TestReportDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TestReport'
   securitySchemes:
     TokenAuth:
       type: apiKey

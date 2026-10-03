@@ -119,19 +119,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/RepoDocument'
 components:
+  parameters:
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
+      schema:
+        type: string
+    OrgId:
+      name: org_id
+      in: path
+      required: true
+      description: The organization identifier.
+      schema:
+        type: string
   schemas:
-    RepoCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Repo'
-    RepoDocument:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Repo'
     RepoCreateRequest:
       type: object
       properties:
@@ -147,6 +150,20 @@ components:
                 url:
                   type: string
                   description: Git URL of the private repository to add.
+    RepoCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Repo'
+    ResourceIdentifier:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
     RepoUpdateRequest:
       type: object
       properties:
@@ -158,13 +175,11 @@ components:
               example: repos
             attributes:
               type: object
-    ResourceIdentifier:
+    RepoDocument:
       type: object
       properties:
-        id:
-          type: string
-        type:
-          type: string
+        data:
+          $ref: '#/components/schemas/Repo'
     Repo:
       type: object
       properties:
@@ -200,21 +215,6 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/ResourceIdentifier'
-  parameters:
-    RepoId:
-      name: repo_id
-      in: path
-      required: true
-      description: The repository identifier.
-      schema:
-        type: string
-    OrgId:
-      name: org_id
-      in: path
-      required: true
-      description: The organization identifier.
-      schema:
-        type: string
   securitySchemes:
     TokenAuth:
       type: apiKey
