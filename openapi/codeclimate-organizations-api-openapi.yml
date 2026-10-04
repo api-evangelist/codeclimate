@@ -44,28 +44,6 @@ paths:
                 $ref: '#/components/schemas/OrgCollection'
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: users
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            email:
-              type: string
-    OrgCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Org'
     UserDocument:
       type: object
       properties:
@@ -83,6 +61,28 @@ components:
           type: object
           properties:
             name:
+              type: string
+    OrgCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Org'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: users
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
               type: string
   securitySchemes:
     TokenAuth:

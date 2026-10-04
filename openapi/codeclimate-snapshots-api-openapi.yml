@@ -33,18 +33,18 @@ paths:
                 $ref: '#/components/schemas/SnapshotDocument'
 components:
   parameters:
-    RepoId:
-      name: repo_id
-      in: path
-      required: true
-      description: The repository identifier.
-      schema:
-        type: string
     SnapshotId:
       name: snapshot_id
       in: path
       required: true
       description: The snapshot identifier.
+      schema:
+        type: string
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
       schema:
         type: string
   schemas:
