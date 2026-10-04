@@ -157,6 +157,9 @@ apis:
   - type: Documentation
     url: https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis
 common:
+- type: CapabilityMap
+  url: capabilities/codeclimate-capability-edges.yml
+  name: Code Climate Business Capability Map
 - type: AgenticAccess
   url: agentic-access/codeclimate-agentic-access.yml
 - type: VulnerabilityDisclosure

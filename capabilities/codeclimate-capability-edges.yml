@@ -1,0 +1,34 @@
+slug: codeclimate
+provider: Code Climate
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Test Coverage
+  spec_file: codeclimate-test-coverage-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.9
+  evidence: POST /test_reports createTestReport Create a test report (coverage upload); GET .../test_file_reports
+    listTestFileReports List per-file test coverage reports
+  reason: Ingestion and reporting of automated test coverage is squarely test-suite stewardship within
+    Software Quality Engineering.
+- tag: Issues
+  spec_file: codeclimate-issues-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.75
+  evidence: GET /repos/{repo_id}/snapshots/{snapshot_id}/issues listSnapshotIssues List issues in a snapshot
+  reason: '''Issues'' here are static-analysis maintainability findings produced by automated code review,
+    not customer tickets — defect/quality findings management under Software Quality Engineering.'
