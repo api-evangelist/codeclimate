@@ -131,13 +131,13 @@ components:
               example: repos
             attributes:
               type: object
-    RepoCollection:
+    ResourceIdentifier:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Repo'
+        id:
+          type: string
+        type:
+          type: string
     RepoCreateRequest:
       type: object
       properties:
@@ -153,18 +153,13 @@ components:
                 url:
                   type: string
                   description: Git URL of the private repository to add.
-    ResourceIdentifier:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-    RepoDocument:
+    RepoCollection:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Repo'
+          type: array
+          items:
+            $ref: '#/components/schemas/Repo'
     Repo:
       type: object
       properties:
@@ -200,19 +195,24 @@ components:
               properties:
                 data:
                   $ref: '#/components/schemas/ResourceIdentifier'
+    RepoDocument:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Repo'
   parameters:
-    RepoId:
-      name: repo_id
-      in: path
-      required: true
-      description: The repository identifier.
-      schema:
-        type: string
     OrgId:
       name: org_id
       in: path
       required: true
       description: The organization identifier.
+      schema:
+        type: string
+    RepoId:
+      name: repo_id
+      in: path
+      required: true
+      description: The repository identifier.
       schema:
         type: string
   securitySchemes:

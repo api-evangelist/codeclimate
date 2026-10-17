@@ -112,6 +112,13 @@ paths:
           description: Created
 components:
   schemas:
+    TestFileReportCollection:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestFileReport'
     TestReportDocument:
       type: object
       properties:
@@ -134,33 +141,6 @@ components:
                   type: integer
                 total:
                   type: integer
-    TestReportCollection:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestReport'
-    TestReport:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: test_reports
-        attributes:
-          type: object
-          properties:
-            commit_sha:
-              type: string
-            covered_percent:
-              type: number
-            received_at:
-              type: string
-              format: date-time
-            state:
-              type: string
     TestFileReport:
       type: object
       properties:
@@ -206,13 +186,33 @@ components:
                     type: string
                   covered_percent:
                     type: number
-    TestFileReportCollection:
+    TestReportCollection:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/TestFileReport'
+            $ref: '#/components/schemas/TestReport'
+    TestReport:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: test_reports
+        attributes:
+          type: object
+          properties:
+            commit_sha:
+              type: string
+            covered_percent:
+              type: number
+            received_at:
+              type: string
+              format: date-time
+            state:
+              type: string
   parameters:
     RepoId:
       name: repo_id
