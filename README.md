@@ -1,4 +1,4 @@
-# Code Climate (codeclimate)
+# Code Climate
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,138 +66,127 @@
 
 Code Climate provides automated code review and engineering intelligence for software teams. The Quality REST API (v1) exposes organizations, repositories, maintainability and test-coverage analysis, snapshots, and issues, while Velocity surfaces engineering analytics across the software delivery lifecycle.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/codeclimate/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/codeclimate/refs/heads/main/apis.yml)
+**Areas:** Code Quality · Static Analysis · Test Coverage · Engineering Analytics · DevOps · Developer Tools
 
-## Tags
+## Code Climate on APIs.io
 
-- Code Quality
-- Static Analysis
-- Test Coverage
-- Engineering Analytics
-- DevOps
+Everything profiled for Code Climate is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/codeclimate/](https://apis.io/providers/codeclimate/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Code Climate Issues API](https://apis.io/apis/codeclimate/codeclimate-issues-api/) — The Issues API from Code Climate — 1 operation(s) for issues.
+- [Code Climate Organizations API](https://apis.io/apis/codeclimate/codeclimate-organizations-api/) — The Organizations API from Code Climate — 2 operation(s) for organizations.
+- [Code Climate Repositories API](https://apis.io/apis/codeclimate/codeclimate-repositories-api/) — The Repositories API from Code Climate — 4 operation(s) for repositories.
+- [Code Climate Services API](https://apis.io/apis/codeclimate/codeclimate-services-api/) — The Services API from Code Climate — 1 operation(s) for services.
+- [Code Climate Snapshots API](https://apis.io/apis/codeclimate/codeclimate-snapshots-api/) — The Snapshots API from Code Climate — 1 operation(s) for snapshots.
+- [Code Climate Test Coverage API](https://apis.io/apis/codeclimate/codeclimate-test-coverage-api/) — The Test Coverage API from Code Climate — 5 operation(s) for test coverage.
 
-## APIs
+### Published properties
 
-### Code Climate Repos API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Manage and read repositories under an organization, including adding private repos, listing repos, and retrieving repository metadata and analysis relationships.
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.codeclimate.com/](https://developer.codeclimate.com/)
-- **Base URL:** `https://api.codeclimate.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Codeclimate Agentic Access](https://apis.io/agentic-access/codeclimate/codeclimate-agentic-access/)
 
-- Repositories
-- Organizations
-- Code Quality
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developer.codeclimate.com/)
-- [API Reference](https://developer.codeclimate.com/)
-- [OpenAPI](openapi/codeclimate-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/codeclimate.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codeclimate.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Code Climate Quality API](https://apis.io/collections/codeclimate/open-codeclimate/)
+- [Code Climate Quality Issues API](https://apis.io/collections/codeclimate/open-codeclimate-issues-api/)
+- [Code Climate Quality Issues Organizations API](https://apis.io/collections/codeclimate/open-codeclimate-organizations-api/)
+- [Code Climate Quality Issues Repositories API](https://apis.io/collections/codeclimate/open-codeclimate-repositories-api/)
+- [Code Climate Quality Issues Services API](https://apis.io/collections/codeclimate/open-codeclimate-services-api/)
+- [Code Climate Quality Issues Snapshots API](https://apis.io/collections/codeclimate/open-codeclimate-snapshots-api/)
+- [Code Climate Quality Issues Test Coverage API](https://apis.io/collections/codeclimate/open-codeclimate-test-coverage-api/)
 
-### Code Climate Issues API
+#### Security (3)
 
-Read code quality issues detected within a repository snapshot, with metadata describing the engine, category, severity, and source location of each finding.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://developer.codeclimate.com/](https://developer.codeclimate.com/)
-- **Base URL:** `https://api.codeclimate.com/v1`
+- [Codeclimate Authentication](https://apis.io/security/codeclimate/codeclimate-authentication/)
+- [Codeclimate Domain Security](https://apis.io/security/codeclimate/codeclimate-domain-security/)
+- [Codeclimate Vulnerability Disclosure](https://apis.io/security/codeclimate/codeclimate-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Issues
-- Static Analysis
-- Maintainability
+Published plans, tiers and prices.
 
-#### Properties
+- [Codeclimate Plans Pricing](https://apis.io/plans/codeclimate/codeclimate-plans-pricing/)
 
-- [Documentation](https://developer.codeclimate.com/)
-- [API Reference](https://developer.codeclimate.com/)
-- [OpenAPI](openapi/codeclimate-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/codeclimate.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codeclimate.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Code Climate Test Coverage API
+Published request limits.
 
-Submit and read test coverage data through test reports and per-file test file reports, including batch upload of source-file coverage from CI via the test reporter.
+- [Codeclimate Rate Limits](https://apis.io/rate-limits/codeclimate/codeclimate-rate-limits/)
 
-- **Human URL:** [https://developer.codeclimate.com/](https://developer.codeclimate.com/)
-- **Base URL:** `https://api.codeclimate.com/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Test Coverage
-- Test Reports
-- CI
+- [Codeclimate Finops](https://apis.io/finops/codeclimate/codeclimate-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://developer.codeclimate.com/)
-- [Documentation](https://docs.codeclimate.com/docs/getting-started-test-coverage)
-- [OpenAPI](openapi/codeclimate-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/codeclimate.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codeclimate.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Code Climate Snapshots API
-
-Read repository analysis snapshots that group the issues, ratings, and metrics produced for a given commit, along with the issues contained in a snapshot.
-
-- **Human URL:** [https://developer.codeclimate.com/](https://developer.codeclimate.com/)
-- **Base URL:** `https://api.codeclimate.com/v1`
-
-#### Tags
-
-- Snapshots
-- Analysis
-- Ratings
-
-#### Properties
-
-- [Documentation](https://developer.codeclimate.com/)
-- [API Reference](https://developer.codeclimate.com/)
-- [OpenAPI](openapi/codeclimate-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/codeclimate.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codeclimate.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Code Climate Velocity API
-
-Engineering analytics surfacing delivery metrics across the software development lifecycle, complementing the Quality API for organization-level reporting.
-
-- **Human URL:** [https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis](https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis)
-- **Base URL:** `https://api.codeclimate.com/v1`
-
-#### Tags
-
-- Engineering Analytics
-- Velocity
-- Metrics
-
-#### Properties
-
-- [Documentation](https://docs.velocity.codeclimate.com/en/collections/2036087-velocity-apis)
-- [OpenAPI](openapi/codeclimate-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/codeclimate.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codeclimate.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/codeclimate)
-- [LinkedIn](https://www.linkedin.com/company/code-climate)
 - [Website](https://codeclimate.com)
 - [Documentation](https://developer.codeclimate.com/)
-- [Plans](plans/codeclimate-plans-pricing.yml)
-- [Rate Limits](rate-limits/codeclimate-rate-limits.yml)
-- [Fin Ops](finops/codeclimate-finops.yml)
+- [Blog](http://codeclimate.com/blog)
+- [GitHub](https://github.com/codeclimate)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 24.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 46.5 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/codeclimate/](https://apis.io/providers/codeclimate/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Code Climate: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/codeclimate/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
